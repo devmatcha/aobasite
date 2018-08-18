@@ -1,26 +1,20 @@
-// client-side js
-// run by the browser each time your view template referencing it is loaded
- 
-// open a database connection
-
 console.log('hello world :o');
 
 let comments = [];
 
-// define variables that reference elements on our page
+// define variables that reference elements on the page
 const list = document.getElementById('comments');
 const form = document.forms[0];
 const name = form.elements['name'];
 const rating = form.elements['rating'];
 const comment = form.elements['comment'];  
 
-// a helper function to call when our request for dreams is done
 let ratings = [];
 const getListener = function() {
-  // parse our response to convert to JSON
+  // parse response to convert to JSON
   comments = JSON.parse(this.responseText);
 
-  // iterate through every dream and add it to our page
+  // iterate through every dream and add it to the page
   comments.forEach( function(row) {
     console.log(row.name, row.rating, row.comment);
     appendNewComment(row.name, row.rating, row.comment);
@@ -54,7 +48,6 @@ const appendNewComment = function(name, rating, comment) {
 
 // listen for the form to be submitted and add a new dream when it is
 form.onsubmit = function(event) {
-  // stop our form submission from refreshing the page
   event.preventDefault();
 
   // get dream value and add it to the list
