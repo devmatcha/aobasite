@@ -1,0 +1,168 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Aoba - A Bot for Discord</title>
+    <meta name="description" content="Aoba is a bot for Discord that contains many fun commands such as leveling, RPG, and currency! It also includes music commands and some moderation.">
+    <link id="favicon" rel="icon" href="https://cdn.glitch.com/03d95bfb-e1e6-4ce1-ba50-36bd2ca85bd4%2Faoba%20icon%20circ.png?1533929714856" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Discord,Bot,Discord Bot,Aoba,Fun,Moderation,Music,RPG">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- import the webpage's client-side javascript file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+    
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
+    
+        /* Check the location of each desired element */
+        $('.fade').each( function(i){
+            
+            var bottom_of_object = $(this).position().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            /* If the object is completely visible in the window, fade it it */
+            if( bottom_of_window > bottom_of_object ){
+                
+                $(this).animate({'opacity':'1'},1500);
+                    
+            }
+            
+        }); 
+    
+    });
+    
+  });
+    </script>
+    <script>
+      $(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+    </script>
+    <script src="/client.js" defer></script>
+  </head>
+  <body>
+      <div id="main">
+      <header id="top">
+        <h1>
+          <a href="/">Aoba</a>
+        </h1>
+        <div id="links">
+          <ul>
+            <li><a href="/commands">Commands</a></li>
+            <li><a href="https://discordbots.org/bot/465934252949897216" target="_blank">Discord Bot List</a></li>
+            <li><a href="http://github.com/devmatcha/aoba" target="_blank">Github</a></li>
+            <li><a href="http://patreon.com/aobabot" target="_blank">Patreon</a></li>
+            <li><a href="http://ko-fi.com/matchamilk" target="_blank">Ko-fi</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <main>
+        <h1 id="rated">
+          
+        </h1>
+        <p>Aoba is a lovely bot that loves to have fun! It is based off of the character Aoba Suzukaze from the anime New Game! Most of its commands are fun, although there are some moderation commands. Aoba also comes equiped with an RPG style game called Fairies Story (yes, from the anime). Aoba uses the prefix <code>&gt;</code>, but you can customize the prefix or you can just <code>@Aoba</code> with a command.</p>
+        
+        <p class="fade" style="text-align: center; font-size: 130%; font-weight:bold;">
+          <a href="https://discordapp.com/oauth2/authorize?client_id=465934252949897216&permissions=1379200054&scope=bot" target="_blank">
+          Invite Aoba to your server!</a>
+        </p>
+        
+        <h2>
+          Examples
+        </h2>
+        <div class="fade">
+          <p>
+             <a href="https://i.gyazo.com/db2e149361c64c20adbfd4fe7994ba66.png" target="_blank"><img src="https://i.gyazo.com/db2e149361c64c20adbfd4fe7994ba66.png" style="float: left; margin-right: 4%;"/></a>
+   One of Aoba's unique features is Fairies Story. With this, users can create a profile using <code>&gt;fs start</code>. That way, they have the option to participate in the game. Currently in Fairies Story, you can level up and obtain items by speaking and sell your items to collect FP, the form of currency in the game. With FP, you can gamble away your money using <code>fs gamble</code> to earn more money or you can use the Gacha Machine with <code>fs gacha</code> to collect more items.
+          </p>
+        </div>
+        
+        <div class="fade">
+          <p>
+            <a href="https://i.gyazo.com/20f1efa9f74ce8e184ea32840c586063.png" target="_blank"><img src="https://i.gyazo.com/20f1efa9f74ce8e184ea32840c586063.png" style="float: right; margin-left: 4%;"/></a>
+   Aoba also has many fun commands outside of Faries Story! It comes with many interactive commands that allow you and members of your server to enjoy yourselves! <br>One important command Aoba has is the <code>music</code> command. By doing <code>music play</code>, Aoba will enter the voice channel you are currently in and you can select songs by doing <code>music play [search terms]</code> or by giving a Youtube URL. <br>It has action commands such as <code>hug</code>, <code>kiss</code>, and slap and it also has a Love Calculator in the <code>love</code> command!. Aoba has text altering commands such as <code>owo</code> and <code>crytype</code> that converts your message into that type of text.<br> Although these commands may be silly, a lot of effort was put into coding each and every fun command so they are guaranteed to work.
+          </p>
+        </div>
+        
+        <div class="fade">
+          <p>
+            <a href="https://i.gyazo.com/a07b13db0372f024e3c01816c780af35.png" target="_blank"><img src="https://i.gyazo.com/a07b13db0372f024e3c01816c780af35.png" style="float: left; margin-right: 4%;"/></a>
+  Aoba is also useful for moderation! Although its primary purpose is not moderating, it comes with useful commands such as <code>kick</code>, <code>ban</code>, <code>prefix</code>, <code>blacklist</code>, and <code>autorole</code>! You can also use Aoba to check the status of your guild by using the <code>server</code>, <code>channel</code>, or <code>role</code> commands. You can use it to maintain your server fairly well.
+          </p>
+        </div>
+        
+        <div class="fade">
+         <h2>
+          Have feedback for Aoba?
+        </h2>
+        
+        <p>
+          Feel free to give your thoughts on Aoba here! Share what you like about her and what you think she can improve on using this form!
+        </p> 
+        </div>
+        
+        <form action="/" method="POST">
+            <input name="name" type="text" maxlength="50" placeholder="Name" aria-labelledby="submit-review" required><br>
+            <input name="rating" type="number" maxlength="1" size="5" placeholder="Rating (out of 5)" min="1" max="5" aria-labelledby="submit-review" reqired>
+            <br><textarea name="comment" rows="20" cols="50" placeholder="Comment" aria-labelledby="submit-review" required></textarea>
+            <button type="submit" id="submit-review">Submit Review</button>
+          </form>
+
+        <section class="comments">
+          <h1>
+            Reviews
+          </h1>
+          <ul id="comments"></ul>
+        </section>
+      </main>
+        
+        <div id="toplink">
+          <a href="#top">Back To Top</a>
+        </div>
+
+      <footer>
+         <a href="https://discordbots.org/bot/465934252949897216" >
+          <img src="https://discordbots.org/api/widget/status/465934252949897216.svg" alt="Aoba" />
+        </a> <a href="https://twitter.com/Aoba4Discord?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @Aoba4Discord</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </footer>
+    </div>
+  </body>
+</html>

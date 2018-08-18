@@ -1,0 +1,791 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Aoba - A Bot for Discord</title>
+    <meta name="description" content="Aoba is a bot for Discord that contains many fun commands such as leveling, RPG, and currency! It also includes music commands and some moderation.">
+    <link id="favicon" rel="icon" href="https://cdn.glitch.com/03d95bfb-e1e6-4ce1-ba50-36bd2ca85bd4%2Faoba%20icon%20circ.png?1533929714856" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Discord,Bot,Discord Bot,Aoba,Fun,Moderation,Music,RPG">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- import the webpage's client-side javascript file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+    
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
+    
+        /* Check the location of each desired element */
+        $('.fade').each( function(i){
+            
+            var bottom_of_object = $(this).position().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            /* If the object is completely visible in the window, fade it it */
+            if( bottom_of_window > bottom_of_object ){
+                
+                $(this).animate({'opacity':'1'},1500);
+                    
+            }
+            
+        }); 
+    
+    });
+    
+  });
+    </script>
+    <script>
+      $(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+    </script>
+    <script src="/client.js" defer></script>
+  </head>
+  <body>
+      <div id="main">
+      <header id="top">
+        <h1>
+          <a href="/">Aoba</a>
+        </h1>
+        <div id="links">
+          <ul>
+            <li><a href="/commands">Commands</a></li>
+            <li><a href="https://discordbots.org/bot/465934252949897216">Discord Bot List</a></li>
+            <li><a href="http://github.com/devmatcha/aoba">Github</a></li>
+            <li><a href="http://patreon.com/aobabot">Patreon</a></li>
+            <li><a href="http://ko-fi.com/matchamilk">Ko-fi</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <main>
+        <h1>
+          Commands
+        </h1>
+        <div class="nav">
+          <ul>
+            <li>
+              <a href="#core">Core</a>
+            </li>
+            <li>
+              <a href="#mod">Moderation</a>
+            </li>
+            <li>
+              <a href="#utility">Utility</a>
+            </li>
+            <li>
+              <a href="#fs">Fairies Story</a>
+            </li>
+            <li>
+              <a href="#music">Music</a>
+            </li>
+            <li>
+              <a href="#fun">Fun</a>
+            </li>
+            <li>
+              <a href="#action">Action</a>
+            </li>
+          </ul>
+        </div>
+        
+        <h2 id="core">
+          Core
+        </h2>
+        <h3>
+          info
+        </h3>
+        <p>
+          <b>Arguments:</b> None<br>
+          <b>Description:</b> Gives info about Aoba such as version number, date created, API, and social media.<br>
+          <b>Usage:</b> <code>&gt;info</code>
+        </p>
+        <h3>
+          help
+        </h3>
+        <p>
+          <b>Arguments:</b> Command name (optional)<br>
+          <b>Description:</b> Shows list of commands and allows you to view more information about each command<br>
+          <b>Usage:</b> <code>&gt;help</code>, <code>&gt;help blacklist</code>
+        </p>
+        <h2 id="mod">
+          Moderation
+        </h2>
+        <h3>
+          autorole
+        </h3>
+        <p>
+          <b>Arguments:</b> Role (optional), ON or OFF (optional)<br>
+          <b>Description:</b> Sets the given role to be automatically assigned to new members. Enter <code>ON</code> or <code>OFF</code> instead of a role in order to either turn autorole on or off. This command requires the <b>Manage roles</b> permission.<br>
+          <b>Usage:</b> <code>&gt;autorole User</code>, <code>&gt;autorole ON</code>
+        </p>
+        
+        <h3>
+          ban
+        </h3>
+        <p>
+          <b>Arguments:</b> User mention, "Reason" (optional)<br>
+          <b>Description:</b> Bans the given user from the server. This command requires the <b>Ban members</b> permission.<br>
+          <b>Usage:</b> <code>&gt;ban @BadUser</code>, <code>&gt;ban @BadUser "For being a troll"</code>
+        </p>
+        
+        <h3>
+          blacklist
+        </h3>
+        <p>
+          <b>Arguments:</b> Delete [word] (optional), Word (optional)<br>
+          <b>Description:</b> Allows you to view the server's blacklist. Use <code>&gt;blacklist [word]</code> to add a word to the blacklist and <code>&gt;blacklist delete [word]</code> to remove a word from the blacklist. This command requires the <b>Manage server</b> permission.<br>
+          <b>Usage:</b> <code>&gt;blacklist</code>, <code>&gt;blacklist kill</code>, <code>&gt;blackist delete kill</code>
+        </p>
+        
+        <h3>
+          channel
+        </h3>
+        <p>
+          <b>Arguments:</b> Name (optional), Topic (optional)<br>
+          <b>Description:</b> Allows you to view information about the current channel. Use <code>&gt;channel name [name]</code> to change the name of the channel and <code>&gt;channel topic [topic]</code> to change the topic. This command requires the <b>Manage channels</b> permission.<br>
+          <b>Usage:</b> <code>&gt;channel</code>, <code>&gt;channel name talking-channel</code>, <code>&gt;channel topic Talk in this channel.</code>
+        </p>
+        
+        <h3>
+          emoji
+        </h3>
+        <p>
+          <b>Arguments:</b> Image URL, Name<br>
+          <b>Description:</b> Create a custom emoji. This command requires the <b>Manage emojis</b> permission.<br>
+          <b>Usage:</b> <code>&gt;emoji http://imagehost.com/happyface.png happyface</code>
+        </p>
+        
+        <h3>
+          kick
+        </h3>
+        <p>
+          <b>Arguments:</b> User mention, "Reason" (optional)<br>
+          <b>Description:</b> Kicks the given user from the server. This command requires the <b>Kick members</b> permission.<br>
+          <b>Usage:</b> <code>&gt;kick @BadUser</code>, <code>&gt;kick @BadUser "For being a troll"</code>
+        </p>
+        
+        <h3>
+          prefix
+        </h3>
+        <p>
+          <b>Arguments:</b> Desired prefix (optional)<br>
+          <b>Description:</b> View the current prefix of the server. Use <code>&gt;prefix [desired prefix]</code> to change the prefix of the server. This command requires <b>Administrator</b> privileges.<br>
+          <b>Usage:</b> <code>&gt;prefix</code>, <code>&gt;prefix a!</code>
+        </p>
+        
+        <h3>
+          prune
+        </h3>
+        <p>
+          <b>Arguments:</b> Number<br>
+          <b>Description:</b> Delete a given amount of messages from the channel. This command requires the <b>Manage messages</b> permission.<br>
+          <b>Usage:</b> <code>&gt;prune 20</code>
+        </p>
+        
+        <h3>
+          selfrole
+        </h3>
+        <p>
+          <b>Arguments:</b> Role name (optional), add [role name] (optional), delete [role name] (optional)<br>
+          <b>Description:</b> View a list of the server's self-assignable roles.<br> Use <code>&gt;selfrole [role name]</code> to assign yourself a role.<br> Use <code>&gt;selfrole add [role name]</code> and <code>&gt;selfrole delete [role name]</code> to add or delete roles from the list of self-assignable roles. The <code>add</code> and <code>delete</code> commands require the <b>Manage roles</b> permission.<br>
+          <b>Usage:</b> <code>&gt;selfrole Red</code>, <code>&gt;selfrole add Blue</code>, <code>&gt;selfrole delete Green</code>
+        </p>
+        
+        <h3>
+          server
+        </h3>
+        <p>
+          <b>Arguments:</b> roles, name, icon <br>
+          <b>Description:</b> View information about the server.<br>Use <code>&gt;server roles</code> to view a list of roles in the server. <code>&gt;server roles [role name]</code> allows you to view information about the given role. <br> Use <code>&gt;server name [name]</code> to change the name of the server and <code>&gt;server icon [icon url]</code> to change the server icon.<br> The <code>name</code> and <code>icon</code> commands require the <b>Manage server</b> permission.<br>
+          <b>Usage:</b> <code>&gt;server</code>,  <code>&gt;server roles</code>,  <code>&gt;server roles Moderator</code>,  <code>&gt;server name The Lone Zone</code>,  <code>&gt;server icon http://imagehost.com/servericon.png</code>
+        </p>
+        
+        <h3>
+          unban
+        </h3>
+        <p>
+          <b>Arguments:</b> Username (not a mention), Reason (optional)<br>
+          <b>Description:</b> Unban a user from the server. This command requires the <b>Ban members</b> permission.<br>
+          <b>Usage:</b> <code>&gt;unban ForgivenMember</code>,  <code>&gt;unban ForgivenMember "They're valid, I guess."</code>
+        </p>
+        
+        <h2 id="utility">
+          Utility
+        </h2>
+        
+        <h3>
+          flipcoin
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Flip a coin!<br>
+          <b>Usage:</b> <code>&gt;flipcoin</code>
+        </p>
+        
+        <h3>
+          invite
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Sends an invite link to invite Aoba to other servers<br>
+          <b>Usage:</b> <code>&gt;invite</code>
+        </p>
+        
+        <h3>
+          join
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Causes Aoba to join the voice channel you are currently in. This command will not work if you are not in a voice channel.<br>
+          <b>Usage:</b> <code>&gt;join</code>
+        </p>
+        
+        <h3>
+          leave
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Causes Aoba to leave the voice channel you are currently in. This command will not work if you are not in a voice channel.<br>
+          <b>Usage:</b> <code>&gt;leave</code>
+        </p>
+        
+        <h3>
+          notes
+        </h3>
+        <p>
+          <b>Arguments:</b> add [note] (optional), delete [number or all] (optional) <br>
+          <b>Description:</b> Your own personal notepad.<br> Use <code>&gt;notes add [note]</code> to add a note to your list.<br> Use <code>&gt;notes delete [number]</code> to delete a specific note or <code>&gt;notes delete all</code> to delete all notes.<br> You can hold a maximum of <b>five</b> notes.<br>
+          <b>Usage:</b> <code>&gt;notes</code>,  <code>&gt;notes add Clean my room</code>,  <code>&gt;notes delete</code>,  <code>&gt;notes delete 4</code>
+        </p>
+        
+        <h3>
+          parrot
+        </h3>
+        <p>
+          <b>Arguments:</b> Text to repeat <br>
+          <b>Description:</b> Aoba will repeat the text that you give.<br>
+          <b>Usage:</b> <code>&gt;parrot I'm a parrot!</code>
+        </p>
+        
+        <h3>
+          parrotd
+        </h3>
+        <p>
+          <b>Arguments:</b> Text to repeat <br>
+          <b>Description:</b> Aoba will repeat the text that you give and delete your original message.<br>
+          <b>Usage:</b> <code>&gt;parrotd I'm a parrot!</code>
+        </p>
+        
+        <h2 id="fs">
+          Fairies Story
+        </h2>
+        <p>
+          All Fairies Story commands begin with <code>&gt;fairiesstory</code> or <code>&gt;fs</code>.
+        </p>
+        
+        <h3>
+         (no command)
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Opens your profile.<br>
+          <b>Usage:</b> <code>&gt;fs</code>
+        </p>
+        
+        <h3>
+          start
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Create your Fairies Story profile.<br>
+          <b>Usage:</b> <code>&gt;fs start</code>
+        </p>
+        
+        <h3>
+          species
+        </h3>
+        <p>
+          <b>Arguments:</b> change [desired species] (optional) <br>
+          <b>Description:</b> View your species.<br>Use <code>species change [desired species]</code> to change your species. The current available species are: Human, Fairy, Gnome, Elf, Dragonborn, Tiefling, and Genasi.<br>
+          <b>Usage:</b> <code>&gt;fs species</code>,  <code>&gt;fs species change Fairy</code>
+        </p>
+        
+        <h3>
+          fp
+        </h3>
+        <p>
+          <b>Arguments:</b> give [amount] @[user] (optional) <br>
+          <b>Description:</b> View how much FP, or money, you have.<br>Use <code>fp [numeral amount] @[user]</code> to give FP to another user.<br>
+          <b>Usage:</b> <code>&gt;fs fp</code>,  <code>&gt;fs fp 1000 @Friend</code>
+        </p>
+        
+        <h3>
+          stats
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> View your stats.<br>
+          <b>Usage:</b> <code>&gt;fs stats</code>
+        </p>
+        
+        <h3>
+          items
+        </h3>
+        <p>
+          <b>Arguments:</b> sell (optional) <br>
+          <b>Description:</b> View your inventory.<br> Use <code>items sell [item]</code> to sell an item and <code>items sell [item] x[number]</code> to sell an item in bulk.<br>
+          <b>Usage:</b> <code>&gt;fs items</code>,  <code>&gt;fs items sell Yummy Food</code>,  <code>&gt;fs items sell Yummy Food x3</code>
+        </p>
+        
+        <h3>
+          gamble
+        </h3>
+        <p>
+          <b>Arguments:</b> amount <br>
+          <b>Description:</b> Gamble a given amount of money away.<br>
+          <b>Usage:</b> <code>&gt;fs gamble 2000</code>
+        </p>
+        
+        <h3>
+          gacha
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Use the Fairy Gacha Machine for <b>500FP</b>.<br>
+          <b>Usage:</b> <code>&gt;fs gacha</code>
+        </p>
+        
+        <h3>
+          rep
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Give someone a reputation point. You earn <b>100FP</b> for giving someone a reputation point. This command can only be used once a day.<br>
+          <b>Usage:</b> <code>&gt;fs rep @Friend</code>
+        </p>
+        
+        <h3>
+          set
+        </h3>
+        <p>
+          <b>Arguments:</b> Channel name <br>
+          <b>Description:</b> Set the channel where Fairies Story notifications are sent (for example, leveling up and picking up items).<br> Use <code>set any</code> to reset the channel. This command requires the <b>Manage server</b> permission.<br>
+          <b>Usage:</b> <code>&gt;fs set bot-spam</code>,  <code>&gt;fs set any</code>
+        </p>
+        
+        <h3>
+          reward
+        </h3>
+        <p>
+          <b>Arguments:</b> big/small, @User <br>
+          <b>Description:</b> Reward a user in your server for doing a good deed. This command can only be used once an hour and requires <b>Administrator</b> privileges.<br>
+          <b>Usage:</b> <code>&gt;fs reward big @Saint</code>,  <code>&gt;fs reward small @GoodGuy</code>
+        </p>
+  
+        <h2 id="music">
+          Music
+        </h2>
+        
+        <p>
+          All music commands start with <code>&gt;music</code>. These commands will not work if you are not inside of a voice channel.
+        </p>
+        
+        <h3>
+          play
+        </h3>
+        <p>
+          <b>Arguments:</b> Search term or YouTube URL <br>
+          <b>Description:</b> Enters a voice channel and plays the requested music<br>
+          <b>Usage:</b> <code>&gt;music play Thnks Fr Th Mrmrs by Fall Out Boy</code>
+        </p>
+        
+        <h3>
+          queue
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> View the queue.<br>
+          <b>Usage:</b> <code>&gt;music queue</code>
+        </p>
+        
+        <h3>
+          volume
+        </h3>
+        <p>
+          <b>Arguments:</b> Number<br>
+          <b>Description:</b> Change the volume to a desired amount. Suggested amount is between <b>2</b> and <b>7</b>.<br>
+          <b>Usage:</b> <code>&gt;music volume 5</code>
+        </p>
+        
+        <h3>
+          pause
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Pause the playing song.<br>
+          <b>Usage:</b> <code>&gt;music pause</code>
+        </p>
+        
+        <h3>
+          resume
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Resume the paused song.<br>
+          <b>Usage:</b> <code>&gt;music resume</code>
+        </p>
+        
+        <h3>
+          skip
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Skip the current song<br>
+          <b>Usage:</b> <code>&gt;music skip</code>
+        </p>
+        
+        <h3>
+          stop
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Stops the music player and makes Aoba leave.<br>
+          <b>Usage:</b> <code>&gt;music stop</code>
+        </p>
+        
+        <h2 id="fun">
+          Fun
+        </h2>
+        
+        <h3>
+          8ball
+        </h3>
+        <p>
+          <b>Arguments:</b> Question <br>
+          <b>Description:</b> Dear magic 8-ball...<br>
+          <b>Usage:</b> <code>&gt;8ball Am I pretty?</code>
+        </p>
+        
+        <h3>
+          amigay
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Aoba will tell you if you are gay or not.<br>
+          <b>Usage:</b> <code>&gt;amigay</code>
+        </p>
+        
+        <h3>
+          aoba
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Sends a GIF of yours truly~<br>
+          <b>Usage:</b> <code>&gt;aoba</code>
+        </p>
+        
+        <h3>
+          bde
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Calculates your BDE<br>
+          <b>Usage:</b> <code>&gt;bde</code>
+        </p>
+        
+        <h3>
+          crytype
+        </h3>
+        <p>
+          <b>Arguments:</b> Phrase <br>
+          <b>Description:</b> Converts your text to crytyped text.<br>
+          <b>Usage:</b> <code>&gt;crytype I'm so sorry I didn't mean to make a crytyping command</code>
+        </p>
+        
+        <h3>
+          f
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Press F to pay respects.<br>
+          <b>Usage:</b> <code>&gt;f</code>
+        </p>
+        
+        <h3>
+          futchscale
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Check where you lie on the Futch Scale™<br>
+          <b>Usage:</b> <code>&gt;futchscale</code>
+        </p>
+        
+        <h3>
+          gottem
+        </h3>
+        <p>
+          <b>Arguments:</b> @User (optional)<br>
+          <b>Description:</b> Hah. Got'em<br>
+          <b>Usage:</b> <code>&gt;gottem</code>,  <code>&gt;gottem @Sucker</code>
+        </p>
+        
+        <h3>
+          hifumi
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Sends a gif of Hifumi Takimoto.<br>
+          <b>Usage:</b> <code>&gt;hifumi</code>
+        </p>
+        
+        <h3>
+          homestuck or hs
+        </h3>
+        <p>
+          <b>Arguments:</b> Troll name, Phrase <br>
+          <b>Description:</b> Sends your message in the given troll's typing quirk<br>Available trolls are: Aradia, Tavros, Sollux, Karkat, Nepeta, Kanaya, Terezi, Vriska, Equius, Gamzee, Eridan, Feferi<br>
+          <b>Usage:</b> <code>&gt;homestuck gamzee "honk honk"</code>, <code>&gt;hs eridan "whatever man"</code>
+        </p>
+        
+        <h3>
+          kinme
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Leave it to Aoba to assign you a kin~<br>
+          <b>Usage:</b> <code>&gt;kinme</code>
+        </p>
+        
+        <h3>
+          kmk
+        </h3>
+        <p>
+          <b>Arguments:</b> Three names <br>
+          <b>Description:</b> Play Kiss, Marry, Kill with Aoba!<br>
+          <b>Usage:</b> <code>&gt;kmk pratt hemsworth evans</code>
+        </p>
+        
+        <h3>
+          love
+        </h3>
+        <p>
+          <b>Arguments:</b> Two names <br>
+          <b>Description:</b> Consult the Love Guru.<br>
+          <b>Usage:</b> <code>&gt;love Husband Wife</code>
+        </p>
+        
+        <h3>
+          lenny
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Sends a Lenny face.<br>
+          <b>Usage:</b> <code>&gt;lenny</code>
+        </p>
+        
+        <h3>
+          owo
+        </h3>
+        <p>
+          <b>Arguments:</b> Phrase <br>
+          <b>Description:</b> Owo-ifies your text!<br>
+          <b>Usage:</b> <code>&gt;owo Hello how are you?</code>
+        </p>
+        
+        <h3>
+          seragaki
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> The salt...<br>
+          <b>Usage:</b> <code>&gt;seragaki</code>
+        </p>
+        
+        <h3>
+          spongebob
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Randomly generates a Spongebob quote.<br>
+          <b>Usage:</b> <code>&gt;spongebob</code>
+        </p>
+        
+        <h3>
+          twunkscale
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> See where you land on the Twunk Scale™<br>
+          <b>Usage:</b> <code>&gt;twunkscale</code>
+        </p>
+        
+        <h3>
+          vine
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Randomly generates a Vine.<br>
+          <b>Usage:</b> <code>&gt;vine</code>
+        </p>
+        
+        <h3>
+          weenie
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Calculates the size of your weenie.<br>
+          <b>Usage:</b> <code>&gt;weenie</code>
+        </p>
+        
+        <h3>
+          who
+        </h3>
+        <p>
+          <b>Arguments:</b> Question <br>
+          <b>Description:</b> Ask a questions starting with <b>"who"</b> and Aoba will answer with a user in your server.<br>
+          <b>Usage:</b> <code>&gt;who is the prettiest?</code>
+        </p>
+        
+        <h2 id="action">
+          Action
+        </h2>
+        
+        <h3>
+          birthday
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Wish someone a happy birthday!<br>
+          <b>Usage:</b> <code>&gt;birthday @BirthdayGirl</code>
+        </p>
+        
+        <h3>
+          bite
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Bite someone!<br>
+          <b>Usage:</b> <code>&gt;bite @Nom</code>
+        </p>
+        
+        <h3>
+          blush
+        </h3>
+        <p>
+          <b>Arguments:</b> None <br>
+          <b>Description:</b> Show that you are blushing.<br>
+          <b>Usage:</b> <code>&gt;blush</code>
+        </p>
+        
+        <h3>
+          cookie
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Give someone a cookie!<br>
+          <b>Usage:</b> <code>&gt;cookie @CookieMonster</code>
+        </p>
+        
+        <h3>
+          glomp
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Glomp somebody!<br>
+          <b>Usage:</b> <code>&gt;glomp @Fwiend</code>
+        </p>
+        
+        <h3>
+          hug
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Give someone a hug!<br>
+          <b>Usage:</b> <code>&gt;hug @Friend</code>
+        </p>
+        
+        <h3>
+          kiss
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Give someone a kiss!<br>
+          <b>Usage:</b> <code>&gt;kiss @Lover</code>
+        </p>
+        
+        <h3>
+          lick
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Lick someone!<br>
+          <b>Usage:</b> <code>&gt;lick @Food</code>
+        </p>
+        
+        <h3>
+          pat
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Give someone a pat on the head!<br>
+          <b>Usage:</b> <code>&gt;pat @CatGirl</code>
+        </p>
+        
+        <h3>
+          slap
+        </h3>
+        <p>
+          <b>Arguments:</b> @User <br>
+          <b>Description:</b> Slap someone!<br>
+          <b>Usage:</b> <code>&gt;slap @BadGirl</code>
+        </p>
+        
+        <div id="toplink">
+          <a href="#top">Back To Top</a>
+        </div>
+      </main>
+
+      <footer>
+         <a href="https://discordbots.org/bot/465934252949897216" >
+          <img src="https://discordbots.org/api/widget/status/465934252949897216.svg" alt="Aoba" />
+        </a> <a href="https://twitter.com/Aoba4Discord?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @Aoba4Discord</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </footer>
+    </div>
+  </body>
+</html>
