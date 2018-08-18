@@ -1,7 +1,3 @@
-// server.js
-// where your node app starts
-
-// init project
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
@@ -9,10 +5,6 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
-// http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 app.use(express.json());       // to support JSON-encoded bodies
 
@@ -42,7 +34,7 @@ db.serialize(function(){
   }
 });
 
-// http://expressjs.com/en/starter/basic-routing.html
+//routing starts here
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
@@ -58,17 +50,18 @@ app.get('/google324cb0babcc9aa76.html', function(request, response) {
 app.get('/sitemap.txt', function(request, response) {
   response.sendFile(__dirname + '/sitemap.txt');
 });
+//routing ends here
 
-
-// endpoint to get all the dreams in the database
-// currently this is the only endpoint, ie. adding dreams won't update the database
-// read the sqlite3 module docs and try to add your own! https://www.npmjs.com/package/sqlite3
+//send comments to client
 app.get('/getComments', function(request, response) {
   db.all('SELECT * from Comments', function(err, rows) {
     response.send(JSON.stringify(rows));
     console.log("sent");
   });
 });
+
+//insert submitted comments into comment database
+//that way they will always show up on the webpage
 
 let upload = new multer();
 
@@ -82,8 +75,6 @@ app.post('/', upload.fields([]), function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-//console.log(vals);
-//db.run(`INSERT INTO Comments(name, rating, comment) VALUES (?, ?, ?)`, vals);
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
