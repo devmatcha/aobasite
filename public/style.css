@@ -22,7 +22,7 @@ a:link, a:visited {
 }
 
 a:hover, a:active {
-  color: #ab5289;
+  color: #CD3D41;
 }
 
 @keyframes fadein {
@@ -61,7 +61,7 @@ code {
 
 b {
   font-weight: bold;
-  color: #e374b8;
+  color: #7BC556;
 }
 
 #main {
@@ -89,14 +89,14 @@ header h1 {
 header h1 a:link, header h1 a:visited {
   text-decoration: none;
   color: #fff;
-  -webkit-text-stroke: 2px #ff73c2;
+  -webkit-text-stroke: 2px #CD3D41;
   letter-spacing: 7%;
 }
 
 header h1 a:hover, header h1 a:active {
   text-decoration: none;
-  color: #ffc4e5;
-  -webkit-text-stroke: 2px #ff73c2;
+  color: #fdffef;
+  -webkit-text-stroke: 2px #CD3D41;
 }
 
 header ul {
@@ -104,8 +104,8 @@ header ul {
   background: linear-gradient(#CC5E9C, #bf5290);
   text-align: center;
   padding: 2%;
-  border-top: 5px solid #F57FBE;
-  border-bottom: 5px solid #F57FBE;
+  border-top: 5px solid #FFF1E7;
+  border-bottom: 5px solid #EBBA8C;
 }
 
 header li {
@@ -121,7 +121,7 @@ header li a:link, header li a:visited {
 }
 
 header li a:hover, header li a:active {
-  color: #f57fbe;
+  color: #fdffef;
 }
 
 .fade {
@@ -130,6 +130,8 @@ header li a:hover, header li a:active {
 
 
 main h1 {
+  margin: auto;
+  width: 90%;
   margin-top: 3%;
   font-size: 250%;
   text-align: center;
@@ -147,7 +149,7 @@ p {
   line-height: 1.7;
   background: rgba(255,255,255,0.8);
   border-radius: 10px;
-  border: 1px solid #e695c7;
+  border: 1px solid #76A65E;
 }
 
 p img {
@@ -198,11 +200,23 @@ input {
   font-size: 16px;
 }
 
+input:focus {
+  background: #F9FFCD;
+  color: #C160A1;
+  outline: none;
+}
+
 textarea {
   width: 100%;
   resize: none;
   font-size: 16px;
   border: 1px solid #C95DA3;
+}
+
+textarea:focus {
+  background: #F9FFCD;
+  color: #C160A1;
+  outline: none;
 }
 
 button {
@@ -219,7 +233,7 @@ button {
 }
 
 button:hover {
-  background-color: #F09EEE;
+  background-color: #F9FFCD;
 }
 
 button:active {
@@ -242,7 +256,7 @@ section ul {
   font-size: 12pt;
   background: rgba(255,255,255,0.8);
   border-radius: 10px;
-  border: 1px solid #e695c7;
+  border: 1px solid #76A65E;
 }
 
 section li {
@@ -259,7 +273,7 @@ section h2 {
   line-height: 1;
   text-align: left;
   font-size: 14pt;
-  background: #d674a5;
+  background: #CC5E9C;
   color: white;
   padding: 1%;
   border-radius: 5px;
@@ -284,9 +298,9 @@ li {
   margin-bottom: 5%;
   font-size: 140%;
   font-weight: bold;
-  border-top: 1px solid darkgray;
-  border-bottom: 1px solid darkgray;
-  background: #faf2f7;
+  border-top: 1px solid #EBBA8C;
+  border-bottom: 1px solid #EBBA8C;
+  background: #FFFBF7;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
@@ -310,6 +324,7 @@ li {
   bottom: 0;
   margin-right: 2%;
   margin-bottom: 2%;
+  z-index: 9999;
 }
 
 footer {

@@ -1,4 +1,5 @@
 *.json
+!package.json
 google324cb0babcc9aa76.html
 .glitch-assets
 *.yaml

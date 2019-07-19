@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var xss = require('xss-filters')
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,7 +31,6 @@ db.serialize(function(){
         console.log('record:', row);
       }
     });
-    db.run("DELETE FROM Comments WHERE id = 1534117357131");
   }
 });
 
@@ -67,7 +67,7 @@ let upload = new multer();
 
 app.post('/', upload.fields([]), function(req, res) {
   console.log(req.body);
-  db.run("INSERT INTO Comments(id, name, rating, comment) VALUES (?, ?, ?, ?)", [Date.now(), req.body.name, req.body.rating, req.body.comment], function(err) {
+  db.run("INSERT INTO Comments(id, name, rating, comment) VALUES (?, ?, ?, ?)", [Date.now(), xss.inHTMLData(req.body.name), xss.inHTMLData(req.body.rating), xss.inHTMLData(req.body.comment)], function(err) {
     if (err) {
       console.error(err);
     }
