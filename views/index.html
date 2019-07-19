@@ -18,9 +18,9 @@
       $(document).ready(function() {
         $(window).scroll( function(){
             $('.fade').each( function(i){
-              var bottom_of_object = $(this).position().top + $(this).outerHeight();
+              var mid_of_object = $(this).position().top + ($(this).outerHeight() / 2) /*+ $(this).outerHeight()*/;
               var bottom_of_window = $(window).scrollTop() + $(window).height();
-              if( bottom_of_window > bottom_of_object ){
+              if( bottom_of_window > mid_of_object ){
                   $(this).animate({'opacity':'1'},1500);   
               }  
             }); 
@@ -50,7 +50,7 @@
       <div id="main">
       <header id="top">
         <h1>
-          <a href="/">Aoba</a>
+          <a href="/" title="Home">Aoba</a>
         </h1>
         <div id="links">
           <ul>
